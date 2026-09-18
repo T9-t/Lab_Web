@@ -17,7 +17,6 @@ body {
 }
 
 a {
-    text-transform: none;
     text-decoration: none;
     color: inherit;
 }
@@ -45,7 +44,6 @@ section {
     position: relative;
     color: #212529;
 }
-
 .section-title::after {
     content: '';
     display: block;
@@ -80,18 +78,50 @@ header .container {
     color: #007bff;
 }
 
-.nav-list {
-    display: flex;
-    gap: 20px;
+.dropdown {
+    position: relative;
 }
 
 .nav-link {
     font-weight: 500;
     color: #495057;
     transition: color 0.3s;
+    cursor: pointer;
 }
 .nav-link:hover {
     color: #007bff;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -10px;
+    min-width: 180px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 10px 0;
+    margin: 0;
+    border-radius: 4px;
+    z-index: 1010;
+}
+
+.submenu li a {
+    display: block;
+    padding: 8px 20px;
+    color: #495057;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: background 0.2s, color 0.2s;
+}
+.submenu li a:hover {
+    background-color: #f1f3f5;
+    color: #007bff;
+}
+.submenu li a.active {
+    color: #007bff;
+    background-color: #f1f3f5;
+    font-weight: bold;
 }
 
 .about-content {
@@ -104,29 +134,90 @@ header .container {
     text-align: center;
 }
 
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
+.skills-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
 }
 
-.skill-card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            
-    display: flex;
+.skills-carousel button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background-color: #007bff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+.skills-carousel button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+.skills-carousel button:active {
+    transform: translateY(1px);
+}
+
+.skills-viewport {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    height: 100px;
+}
+
+.skills-carousel .skill-card {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 10px);
+    display: flex; 
     justify-content: space-between;
     align-items: center;
     font-weight: 600;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.5s;
 }
+
 .skill-card span:last-child {
     color: #007bff;
     font-size: 0.9rem;
     text-transform: uppercase;
 }
-        
+
+.skills-carousel .skill-card.active {
+    visibility: visible;
+    transform: translateX(0);
+}
+.skills-carousel .skill-card.exit-left {
+    visibility: visible;
+    transform: translateX(-100%);
+}
+.skills-carousel .skill-card.exit-right {
+    visibility: visible;
+    transform: translateX(100%);
+}
+.skills-carousel .skill-card.prepare-left {
+    visibility: hidden;
+    transform: translateX(-100%);
+}
+
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -172,13 +263,114 @@ header .container {
 
 .contacts-list {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 30px auto 0;
     text-align: center;
-
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-top: 30px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    position: relative;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.8rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.close-modal:hover {
+    color: #212529;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+.modal-form input {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.modal-form input.input-error {
+    border-color: #dc3545;
+    background-color: #fff8f8;
+    outline: none;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.form-message {
+    display: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}   
+
+.submit-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+.submit-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.success-msg {
+    color: #28a745;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+.error-msg {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
 }
 
 footer {
@@ -191,10 +383,10 @@ footer {
 .footer-links {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     gap: 20px;
     margin-top: 10px;
 }
-
 .footer-links a {
     color: #adb5bd;
     font-size: 0.9rem;
@@ -207,18 +399,17 @@ footer {
     body {
         padding-top: 120px;
     }
-    .header {
+    header {
         height: auto;
         padding: 15px 0;
     }
-    .header .container {
+    header .container {
         flex-direction: column;
         gap: 15px;
     }
-    .nav-list {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
+    .dropdown {
+        position: relative;
+        margin: 10%;
     }
     .section-title {
         font-size: 1.75rem;
@@ -226,22 +417,24 @@ footer {
     .portfolio-grid {
         grid-template-columns: 1fr;
     }
+    .skills-carousel {
+        max-width: 100%;
+        gap: 10px;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
     .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .dropdown {
+        position: relative;
+        margin: 10%;
     }
 }
 
 @media (min-width: 1024px) {
     .portfolio-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .skills-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
