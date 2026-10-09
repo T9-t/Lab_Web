@@ -1,0 +1,93 @@
+@use '../utils' as *;
+
+@keyframes fadeIn { 
+  from { opacity: 0; transform: translateY(rem($fade-in-translate-y)); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+
+.modal { 
+  display: none;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background-color: var(--color-backdrop-bg); 
+  z-index: $z-index-modal; 
+  
+  justify-content: center; 
+  align-items: center; 
+}
+
+.feedback-modal__content { 
+  background-color: var(--color-bg-white); 
+  padding: rem($modal-padding); 
+  border-radius: $radius-main; 
+  width: 100%; 
+  max-width: rem($modal-max-width); 
+  box-shadow: $modal-shadow-x rem($modal-shadow-y) rem($modal-shadow-blur) var(--color-shadow-modal); 
+  position: relative; 
+  animation: fadeIn $transition-duration-normal ease-out; 
+  transition: background-color $transition-duration-normal ease;
+}
+
+.feedback-modal__close { 
+  position: absolute; 
+  top: rem($modal-close-top); 
+  right: rem($modal-close-right); 
+  font-size: rem($modal-close-font-size);
+  color: var(--color-text-muted); 
+  cursor: pointer; 
+  transition: color $transition-duration-fast; 
+
+  &:hover { 
+    color: var(--color-text-dark); 
+  }
+}
+
+.feedback-form { 
+  display: flex; 
+  flex-direction: column; 
+  gap: rem($form-gap); 
+  margin-top: rem($form-margin-top); 
+
+  input { 
+    padding: rem($input-padding); 
+    border: rem($input-border-width) solid var(--color-border-light); 
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    border-radius: $radius-small; 
+    font-size: rem($input-font-size);
+    transition: border-color $transition-duration-fast, background-color $transition-duration-fast, color $transition-duration-fast;
+
+    &.input-error { 
+      border-color: var(--color-error); 
+      background-color: var(--color-error-bg); 
+      outline: none; 
+    }
+  }
+}
+
+.feedback-form__message { 
+  display: none; 
+  font-size: rem($msg-font-size);
+  font-weight: $message-font-weight; 
+}
+
+.success-msg { 
+  color: var(--color-success); 
+  background-color: var(--color-success-bg); 
+  border: rem($msg-border-width) solid var(--color-success-border); 
+  padding: rem($msg-padding); 
+  border-radius: $radius-small; 
+  text-align: center; 
+}
+
+.error-msg { 
+  color: var(--color-error); 
+  background-color: var(--color-error-alert-bg); 
+  border: rem($msg-border-width) solid var(--color-error-alert-border); 
+  padding: rem($msg-padding); 
+  border-radius: $radius-small; 
+  text-align: center; 
+}

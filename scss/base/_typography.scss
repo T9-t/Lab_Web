@@ -1,0 +1,31 @@
+@use '../utils' as *;
+
+.section__title { 
+  text-align: center;
+  font-size: rem($title-font-size-mobile);
+  margin-bottom: rem($title-margin-bottom);
+  position: relative;
+  color: var(--color-text-dark);
+
+  &::after { 
+    content: ''; 
+    display: block; 
+    width: rem($decor-line-width); 
+    height: rem($decor-line-height); 
+    background-color: var(--color-primary); 
+    margin: rem($decor-line-margin-top) auto 0; 
+    border-radius: rem($decor-line-radius); 
+  }
+
+  @include respond-to(tablet) {
+    font-size: rem($title-font-size-tablet); 
+  }
+}
+
+.about-content { 
+  @include flex-center($direction: column, $gap: rem($content-gap)); 
+  max-width: rem($content-max-width); 
+  margin: 0 auto; 
+  font-size: rem($content-font-size); 
+  text-align: center; 
+}

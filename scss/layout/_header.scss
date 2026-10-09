@@ -1,0 +1,96 @@
+@use '../utils' as *;
+
+header { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  background-color: var(--color-bg-white); 
+  box-shadow: $header-shadow-x rem($header-shadow-y) rem($header-shadow-blur) var(--color-shadow-header); 
+  z-index: $z-index-header; 
+  padding: rem($header-padding-y-mobile) 0;
+  transition: background-color $transition-duration-normal ease;
+
+  @include respond-to(tablet) {
+    height: rem($header-height-tablet);
+    padding: 0;
+  }
+
+  .container { 
+    @include flex-center($direction: column, $gap: rem($header-container-gap-mobile));
+    height: 100%; 
+    position: relative;
+
+    @include respond-to(tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 0;
+    }
+  }
+}
+
+.header__logo { 
+  font-size: rem($header-logo-font-size); 
+  font-weight: bold; 
+  color: var(--color-primary); 
+}
+
+.dropdown-menu { 
+  position: relative; 
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu__link { 
+  font-weight: $message-font-weight; 
+  color: var(--color-text-light); 
+  transition: color $transition-duration-normal; 
+  cursor: pointer; 
+
+  &:hover { 
+    color: var(--color-primary); 
+  }
+}
+
+.dropdown-menu-sub { 
+  display: none; 
+  position: absolute; 
+  top: 100%; 
+  left: rem($dropdown-sub-left-offset); 
+  min-width: rem($dropdown-sub-min-width); 
+  background-color: var(--color-bg-white); 
+  box-shadow: $dropdown-sub-shadow-x rem($dropdown-sub-shadow-y) rem($dropdown-sub-shadow-blur) var(--color-shadow-dropdown); 
+  padding: rem($dropdown-sub-padding-y) 0; 
+  margin: 0; 
+  border-radius: $radius-small; 
+  z-index: $z-index-dropdown; 
+}
+
+.dropdown-menu-sub__item {
+  display: block; 
+  margin: 0;
+  padding: 0;
+
+  a {
+    display: block; 
+    padding: rem($dropdown-item-padding-y) rem($dropdown-item-padding-x); 
+    color: var(--color-text-light); 
+    font-size: rem($dropdown-item-font-size); 
+    font-weight: 400; 
+    text-decoration: none;
+    transition: background-color $transition-duration-fast, color $transition-duration-fast; 
+
+    &:hover { 
+      background-color: var(--color-bg-main); 
+      color: var(--color-primary); 
+    }
+  }
+
+  &--active { 
+    a {
+      color: var(--color-primary) !important; 
+      background-color: var(--color-bg-main); 
+      font-weight: bold; 
+    }
+  }
+}

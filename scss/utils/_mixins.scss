@@ -1,0 +1,23 @@
+@use 'sass:map';
+@use 'variables' as *;
+
+@mixin respond-to($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @error "Ошибка: Брейкпоинт '#{$breakpoint}' не найден в карте \$breakpoints.";
+  }
+}
+
+@mixin flex-center($direction: row, $gap: null) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+  
+  @if $gap {
+    gap: $gap;
+  }
+}

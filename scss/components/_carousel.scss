@@ -1,0 +1,93 @@
+@use '../utils' as *;
+
+.skills-carousel { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: rem($carousel-gap-default); 
+  max-width: 100%; 
+  margin: 0 auto; 
+  position: relative; 
+
+  @include respond-to(mobile) {
+    max-width: rem($carousel-max-width-mobile);
+    gap: rem($carousel-gap-mobile);
+  }
+
+  button { 
+    @include flex-center; 
+    color: var(--color-bg-white); 
+    background-color: var(--color-primary); 
+    
+    border-radius: 50%; 
+    width: rem($btn-size); 
+    height: rem($btn-size); 
+    font-size: rem($btn-font-size); 
+    font-weight: bold; 
+    border: none; 
+    outline: none; 
+    cursor: pointer; 
+    transition: background-color $transition-duration-fast, transform $transition-duration-fast; 
+
+    &:hover { 
+      background-color: var(--color-primary-hover); 
+      transform: translateY(rem($btn-hover-translate-y)); 
+    }
+
+    &:active { 
+      transform: translateY(rem($btn-active-translate-y)); 
+    }
+  }
+}
+
+.skill-card { 
+  position: absolute; 
+  top: rem($card-top-offset); 
+  left: 0; 
+  width: 100%; 
+  height: calc(100% - #{rem($card-height-reduction)}); 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  font-weight: $card-font-weight; 
+  box-shadow: $card-shadow-x rem($card-shadow-y) rem($card-shadow-blur) var(--color-shadow-carousel); 
+  background: var(--color-bg-card); 
+  padding: rem($card-padding); 
+  border-radius: $radius-main; 
+  visibility: hidden; 
+  transform: translateX(100%); 
+  transition: transform $transition-duration-carousel $transition-timing-carousel, visibility $transition-duration-carousel; 
+
+  span:last-child { 
+    color: var(--color-primary); 
+    font-size: rem($card-badge-font-size); 
+    text-transform: uppercase; 
+  }
+
+  &.active { 
+    visibility: visible; 
+    transform: translateX(0); 
+  }
+
+  &.exit-left { 
+    visibility: visible; 
+    transform: translateX(-100%); 
+  }
+
+  &.exit-right { 
+    visibility: visible; 
+    transform: translateX(100%); 
+  }
+
+  &.prepare-left { 
+    visibility: hidden; 
+    transform: translateX(-100%); 
+  }
+}
+
+.skills-carousel__viewport { 
+  overflow: hidden; 
+  width: 100%; 
+  position: relative; 
+  height: rem($carousel-viewport-height); 
+}
