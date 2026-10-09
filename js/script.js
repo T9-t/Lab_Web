@@ -1,49 +1,63 @@
 $(document).ready(function() {
+
+    const htmlEl = $('html');
+
+    $('.theme-toggle').on('click', function(e) {
+        e.preventDefault();
+
+        const isDark = htmlEl.attr('data-theme') === 'dark';
+        
+        if (isDark) {
+            htmlEl.removeAttr('data-theme');
+            localStorage.setItem('portfolio-theme', 'light');
+        } else {
+            htmlEl.attr('data-theme', 'dark');
+            localStorage.setItem('portfolio-theme', 'dark');
+        }
+    });
     
-    $('.dropdown > a').on('click', function(e) {
+    $('.js-dropdown > a').on('click', function(e) {
         e.preventDefault();
     
-        const $submenu = $(this).siblings('.submenu');
+        const $submenu = $(this).siblings('.js-submenu');
 
-        $('.submenu').not($submenu).stop(true, true).slideUp(200);
+        $('.js-submenu').not($submenu).stop(true, true).slideUp(200);
         $submenu.stop(true, true).slideToggle(200);
     });
-
 
     $(window).on('scroll', function() {
         const scrollPos = $(document).scrollTop() + 100;
         const windowHeight = $(window).height();
         const docHeight = $(document).height();
 
-        if ($(window).scrollTop() + windowHeight >= docHeight - 10) {
+        const activeClass = 'dropdown-menu-sub__item--active';
+        const $navLinks = $('.js-submenu-link');
 
-            $('.submenu a').removeClass('active');
-            $('.submenu a[href="#contacts"]').addClass('active');
+        if ($(window).scrollTop() + windowHeight >= docHeight - 10) {
+            $navLinks.parent().removeClass(activeClass);
+            $('.js-submenu-link[href="#contacts"]').parent().addClass(activeClass);
             return;
         }
-        $('.submenu a').each(function() {
-            const currLink = $(this);
-            const href = currLink.attr('href');
+        $navLinks.each(function() {
+            const $currLink = $(this);
+            const href = $currLink.attr('href');
 
             if (!href || href.indexOf('#') !== 0 || href === '#') return;
 
-            const refElement = $(href);
-    
-            if (refElement.length) {
-                if (refElement.offset().top <= scrollPos && refElement.offset().top + refElement.height() > scrollPos) {
+            const $refElement = $(href);
 
-                    $('.submenu a').removeClass('active');
-                    currLink.addClass('active');
+            if ($refElement.length) {
+                if ($refElement.offset().top <= scrollPos && $refElement.offset().top + $refElement.outerHeight() > scrollPos) {
+                    $navLinks.parent().removeClass(activeClass);
+                    $currLink.parent().addClass(activeClass);
                 }
             }
         });
         if ($(document).scrollTop() < 100) {
-            
-            $('.submenu a').removeClass('active');
-            $('.submenu a[href="#"]').addClass('active');
+            $navLinks.parent().removeClass(activeClass);
+            $('.js-submenu-link[href="#"]').parent().addClass(activeClass);
         }
     });
-
 
     const $slides = $('.skills-carousel .skill-card');
     const slideCount = $slides.length;
@@ -167,8 +181,7 @@ $(document).ready(function() {
         });
     });
 
-
-    $('.open-modal-btn').on('click', function(e) {
+    $('.js-open-modal-btn').on('click', function(e) {
         e.preventDefault(); 
     
         $('.submenu').stop(true, true).slideUp(200); 
@@ -177,19 +190,19 @@ $(document).ready(function() {
         $('body').css('overflow', 'hidden');
     });
 
-    $('.close-modal').on('click', function() {
+    $('.js-modal-close').on('click', function() {
 
         $('#myModal').css('display', 'none');
         $('body').css('overflow', 'auto');
         $(this)[0].reset();
     });
 
-    $('.modal-form').on('submit', function(e) {
+    $('.js-feedback-form').on('submit', function(e) {
         e.preventDefault();
 
         const $form = $(this);
-        const $submitBtn = $form.find('.submit-btn');
-        const $messageBox = $form.find('.form-message');
+        const $submitBtn = $form.find('.js-submit-btn');
+        const $messageBox = $form.find('.js-form-message');
 
         const $emailInput = $form.find('input[name="useremail"]');
         const $textInput = $form.find('input[name="message-text"]');
@@ -260,8 +273,8 @@ $(document).ready(function() {
     $(document).on('click', function(e) {
         const $target = $(e.target);
 
-        if (!$target.closest('.dropdown').length) {
-            $('.submenu').stop(true, true).slideUp(200);
+        if (!$target.closest('.js-dropdown').length) {
+            $('.js-submenu').stop(true, true).slideUp(200);
         }
         if ($target.is('#myModal')) {
             $('#myModal').css('display', 'none');

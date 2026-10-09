@@ -1,0 +1,52 @@
+@use '../utils' as *;
+
+.portfolio-grid { 
+  display: grid; 
+  gap: rem($grid-gap); 
+  grid-template-columns: $grid-cols-mobile;
+
+  @include respond-to(tablet) { 
+    grid-template-columns: repeat($grid-cols-tablet-count, 1fr); 
+  }
+  
+  @include respond-to(desktop) { 
+    grid-template-columns: repeat($grid-cols-desktop-count, 1fr); 
+  }
+}
+
+.portfolio-card { 
+  background: var(--color-bg-card); 
+  border-radius: $radius-main; 
+  overflow: hidden; 
+  box-shadow: $card-shadow-x rem($card-shadow-y) rem($card-shadow-blur) var(--color-shadow-card); 
+  transition: transform $transition-duration-normal, box-shadow $transition-duration-normal, background-color $transition-duration-normal; 
+
+  &:hover { 
+    transform: translateY(rem($card-hover-translate-y)); 
+  }
+}
+
+.portfolio-img { 
+  width: 100%; 
+  height: rem($img-height); 
+  object-fit: cover;
+  background-color: var(--color-border-light); 
+  @include flex-center; 
+  color: var(--color-text-muted); 
+  font-weight: bold; 
+}
+
+.portfolio-info { 
+  padding: rem($info-padding); 
+}
+
+.portfolio-title { 
+  font-size: rem($title-font-size); 
+  margin-bottom: rem($title-margin-bottom); 
+  color: var(--color-text-dark); 
+}
+
+.portfolio-desc { 
+  color: var(--color-text-muted); 
+  font-size: rem($desc-font-size); 
+}

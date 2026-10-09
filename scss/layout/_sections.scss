@@ -1,0 +1,13 @@
+@use '../utils' as *;
+
+section { 
+  padding: rem($section-padding-y) $section-padding-x; 
+  border-bottom: rem($section-border-width) solid var(--color-border); 
+}
+
+.contacts-container { 
+  max-width: rem($contacts-max-width); 
+  margin: rem($contacts-margin-top) auto 0; 
+  text-align: center; 
+  @include flex-center($direction: column, $gap: rem($contacts-gap));
+}

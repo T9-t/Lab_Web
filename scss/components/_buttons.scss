@@ -1,0 +1,69 @@
+@use '../utils' as *;
+
+.feedback-form__submit { 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-main;
+  font-weight: $btn-font-weight;
+  text-align: center;
+  border: rem($btn-border-width) solid transparent;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color $transition-duration-normal, box-shadow $transition-duration-normal, transform $transition-duration-fast;
+  outline: none;
+  
+  padding: rem($btn-padding); 
+  border-radius: $radius-small; 
+  font-size: rem($btn-font-size);
+  background-color: var(--color-primary); 
+  color: var(--color-bg-white); 
+
+  &:hover { 
+    background-color: var(--color-primary-hover); 
+  }
+
+  &:active {
+    background-color: var(--color-primary);
+    transform: translateY(rem($btn-active-translate-y));
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 rem($btn-focus-shadow-spread) var(--color-focus-ring);
+  }
+
+  &:disabled { 
+    background-color: var(--color-text-muted); 
+    color: var(--color-text-light);
+    cursor: not-allowed; 
+    transform: none;
+  }
+}
+
+.theme-toggle {
+  cursor: pointer; 
+  font-weight: $btn-font-weight; 
+  transition: all $transition-duration-slow ease;
+
+  @include respond-to(tablet) {
+    margin-left: auto;
+    margin-right: rem($toggle-margin-right-tablet);
+  }
+
+  &--primary {
+    border: rem($btn-border-width) solid var(--color-border-light); 
+    background: var(--color-bg-white); 
+    color: var(--color-text-main); 
+
+    &:hover {
+      background-color: var(--color-bg-main);
+      border-color: var(--color-text-muted);
+    }
+  }
+
+  &--small {
+    padding: rem($toggle-padding-y-small) rem($toggle-padding-x-small); 
+    border-radius: $radius-small; 
+    font-size: rem($toggle-font-size-small); 
+  }
+}

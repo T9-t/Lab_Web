@@ -1,0 +1,227 @@
+$breakpoints: (
+  mobile: 480px,
+  tablet: 768px,
+  desktop: 1024px,
+);
+
+$base-font-size: 16px;
+$font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+$padding-top-desktop: 120px;
+$padding-top-tablet: 70px;
+
+$body-line-height: 1.6;
+$transition-speed-main: 0.3s;
+
+
+$title-font-size-mobile: 28px;
+$title-font-size-tablet: 32px;
+$title-margin-bottom: 40px;
+
+$decor-line-width: 50px;
+$decor-line-height: 3px;
+$decor-line-margin-top: 10px;
+$decor-line-radius: 2px;
+
+$content-max-width: 800px;
+$content-font-size: 17.6px;
+$content-gap: 20px;
+
+
+$transition-duration-fast: 0.1s;
+$transition-duration-normal: 0.2s;
+$transition-duration-slow: 0.3s;
+
+$btn-font-weight: 600;
+$btn-border-width: 1px;
+$btn-padding: 12px;
+$btn-font-size: 16px;
+$btn-active-translate-y: 1px;
+$btn-focus-shadow-spread: 3px;
+
+$toggle-margin-right-tablet: 30px;
+$toggle-padding-y-small: 8px;
+$toggle-padding-x-small: 12px;
+$toggle-font-size-small: 14px;
+
+$focus-ring: rgba(0, 123, 255, 0.4); 
+
+
+$grid-gap: 30px;
+$grid-cols-mobile: 1fr;
+$grid-cols-tablet-count: 2;
+$grid-cols-desktop-count: 3;
+
+$transition-duration-normal: 0.3s;
+
+$card-shadow-x: 0;
+$card-shadow-y: 4px;
+$card-shadow-blur: 6px;
+$card-hover-translate-y: -5px;
+
+$img-height: 300px;
+$info-padding: 20px;
+$title-font-size: 20px;
+$title-margin-bottom: 10px;
+$desc-font-size: 15.2px;
+
+$shadow-card: rgba(0, 0, 0, 0.05);
+
+
+$transition-duration-fast: 0.2s;
+$transition-duration-carousel: 0.5s;
+$transition-timing-carousel: cubic-bezier(0.25, 1, 0.5, 1);
+
+$carousel-gap-default: 10px;
+$carousel-gap-mobile: 15px;
+$carousel-max-width-mobile: 500px;
+$carousel-viewport-height: 100px;
+
+$btn-size: 50px;
+$btn-font-size: 24px;
+$btn-hover-translate-y: -2px;
+$btn-active-translate-y: 1px;
+
+$card-top-offset: 5px;
+$card-height-reduction: 10px;
+$card-padding: 20px;
+$card-shadow-x: 0;
+$card-shadow-y: 2px;
+$card-shadow-blur: 10px;
+$card-font-weight: 600;
+
+$card-badge-font-size: 14px;
+$shadow-carousel: rgba(0, 0, 0, 0.05);
+
+
+$transition-duration-fast: 0.2s;
+$transition-duration-normal: 0.3s;
+
+$z-index-modal: 2000;
+$fade-in-translate-y: -20px;
+
+$modal-padding: 30px;
+$modal-max-width: 450px;
+$modal-shadow-x: 0;
+$modal-shadow-y: 5px;
+$modal-shadow-blur: 15px;
+
+$modal-close-top: 15px;
+$modal-close-right: 20px;
+$modal-close-font-size: 28.8px;
+
+$form-gap: 15px;
+$form-margin-top: 20px;
+$input-padding: 10px;
+$input-border-width: 1px;
+$input-font-size: 16px;
+
+$msg-font-size: 14.4px;
+$msg-padding: 10px;
+$msg-border-width: 1px;
+
+$message-font-weight: 500;
+
+$backdrop-bg: rgba(0, 0, 0, 0.5);
+$shadow-modal: rgba(0, 0, 0, 0.2);
+
+
+$transition-duration-fast: 0.2s;
+$transition-duration-normal: 0.3s;
+
+$footer-padding-y: 30px;
+$footer-padding-x: 0;
+$footer-links-gap: 20px;
+$footer-links-margin-top: 10px;
+$footer-link-font-size: 14.4px;
+
+
+$container-max-width: 1200px;
+$container-padding-x: 20px;
+$container-padding-y: 0;
+$container-margin-y: 0;
+
+$transition-duration-fast: 0.2s;
+$transition-duration-normal: 0.3s;
+
+
+$z-index-header: 1000;
+$z-index-dropdown: 1010;
+
+$header-padding-y-mobile: 15px;
+$header-height-tablet: 70px;
+$header-shadow-x: 0;
+$header-shadow-y: 2px;
+$header-shadow-blur: 10px;
+
+$header-container-gap-mobile: 15px;
+$header-logo-font-size: 19.2px;
+
+$dropdown-sub-left-offset: -10px;
+$dropdown-sub-min-width: 180px;
+$dropdown-sub-shadow-x: 0;
+$dropdown-sub-shadow-y: 4px;
+$dropdown-sub-shadow-blur: 12px;
+$dropdown-sub-padding-y: 10px;
+
+$dropdown-item-padding-y: 8px;
+$dropdown-item-padding-x: 20px;
+$dropdown-item-font-size: 15.2px;
+
+$shadow-header: rgba(0, 0, 0, 0.05);
+$shadow-dropdown: rgba(0, 0, 0, 0.1); 
+
+$section-padding-y: 80px;
+$section-padding-x: 0;
+$section-border-width: 1px;
+
+$contacts-max-width: 600px;
+$contacts-margin-top: 30px;
+$contacts-gap: 15px;
+
+$padding-section: 80px;
+$padding-section-mobile: 40px;
+$radius-main: 8px;
+$radius-small: 4px;
+
+$theme-light: (
+  bg-main: #f8f9fa,
+  bg-white: #ffffff,
+  bg-card: #ffffff,
+  text-main: #333333,
+  text-dark: #212529,
+  text-muted: #6c757d,
+  text-light: #495057,
+  border-main: #e9ecef,
+  border-light: #dee2e6,
+  primary: #007bff,
+  primary-hover: #0056b3,
+  success: #28a745,
+  success-bg: #d4edda,
+  success-border: #c3e6cb,
+  error: #dc3545,
+  error-bg: #fff8f8,
+  error-alert-bg: #f8d7da,
+  error-alert-border: #f5c6cb,
+);
+
+$theme-dark: (
+  bg-main: #121212,
+  bg-white: #1e1e1e,
+  bg-card: #252525,
+  text-main: #e0e0e0,
+  text-dark: #f8f9fa,
+  text-muted: #a0a0a0,
+  text-light: #cccccc,
+  border-main: #333333,
+  border-light: #444444,
+  primary: #538bc7,
+  primary-hover: #2b4764,
+  success: #00bc8c,
+  success-bg: #1a3c34,
+  success-border: #28a745,
+  error: #e74c3c,
+  error-bg: #2c1a1a,
+  error-alert-bg: #4c1f1f,
+  error-alert-border: #e74c3c,
+);

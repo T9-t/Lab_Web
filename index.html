@@ -4,22 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Страница-визитка</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./js/savedTheme.js"></script>
+    <link rel="stylesheet" href="dist/css/main.css">
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
     <script src="./js/script.js"></script>
 </head>
 <body>
     <header>
         <div class="container">
-            <div class="logo">Просветова Вероника Михайловна</div> 
-
-            <ul class="dropdown">
-                <a href="#" class="nav-link">Навигация ▾</a>
-                <ul class="submenu">
-                    <li><a href="#">О себе</a></li>
-                    <li><a href="#skills">Навыки</a></li>
-                    <li><a href="#portfolio">Портфолио</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
+            <div class="header__logo">Просветова Вероника Михайловна</div> 
+            <button class="theme-toggle theme-toggle--primary theme-toggle--small">🌓</button>
+            <ul class="dropdown-menu js-dropdown">
+                <a href="#" class="dropdown-menu__link">Навигация ▾</a>
+                <ul class="dropdown-menu-sub js-submenu">
+                    <li class="dropdown-menu-sub__item">
+                        <a class="js-submenu-link" href="#">О себе</a>
+                    </li>
+                    <li class="dropdown-menu-sub__item">
+                        <a class="js-submenu-link" href="#skills">Навыки</a>
+                    </li>
+                    <li class="dropdown-menu-sub__item">
+                        <a class="js-submenu-link" href="#portfolio">Портфолио</a>
+                    </li>
+                    <li class="dropdown-menu-sub__item">
+                        <a class="js-submenu-link" href="#contacts">Контакты</a>
+                    </li>
                 </ul>
             </ul>
         </div>
@@ -27,7 +36,7 @@
 
     <section id="about">
         <div class="container">
-            <h2 class="section-title">О себе</h2>
+            <h2 class="section__title">О себе</h2>
 
             <div class="about-content">
                 <p>Я студент 3 курса в КемГу</p>
@@ -38,12 +47,12 @@
 
     <section id="skills">
         <div class="container">
-            <h2 class="section-title">Навыки</h2>
+            <h2 class="section__title">Навыки</h2>
         
             <div class="skills-carousel">
                 <button class="prev-btn"> < </button>
         
-                <div class="skills-viewport">
+                <div class="skills-carousel__viewport">
                     <div class="skill-card active">
                         <span>HTML и CSS</span>
                         <span>Базовый уровень</span>
@@ -72,17 +81,15 @@
 
     <section id="portfolio">
         <div class="container">
-            <h2 class="section-title">Примеры работ</h2>
-
+            <h2 class="section__title">Примеры работ</h2>
             <div class="portfolio-grid"></div>
         </div>
     </section>
 
     <section id="contacts">
         <div class="container">
-            <h2 class="section-title">Контакты</h2>
-
-            <ul class="contacts-list">
+            <h2 class="section__title">Контакты</h2>
+            <ul class="contacts-container">
                 <p>Email: random@gmail.com</p>
                 <p>Телефон: +7 (999) 999-99-99</p>
                 <p>Telegram: @random_name_tg</p>
@@ -91,27 +98,26 @@
     </section>
 
     <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
+        <div class="feedback-modal__content">
+            <span class="feedback-modal__close js-modal-close">&times;</span>
         
             <h3>Оставить сообщение</h3>
             <p>Оставьте сообщение, если заметили ошибки в работе сайта.</p>
         
-            <form class="modal-form">
+            <form class="feedback-form js-feedback-form">
                 <input type="email" name="useremail" placeholder="Ваш Email">
                 <input type="text" name="message-text" placeholder="Сообщение...">
 
-                <div class="form-message"></div>
-
-                <button type="submit" class="submit-btn">Отправить</button>
+                <div class="feedback-form__message js-form-message"></div>
+                <button class="feedback-form__submit js-submit-btn">Отправить</button>
             </form>
         </div>
     </div>
 
     <footer>
-        <div class="footer-links">
+        <div class="footer__links">
             <a href="#">Вверх</a>
-            <a class="open-modal-btn">Обратная связь</a>
+            <a class="js-open-modal-btn">Обратная связь</a>
             <a href="https://github.com/T9-t/Lab_Web.git" target="_blank">Страница на GitHub</a>
         </div>
         <br>
